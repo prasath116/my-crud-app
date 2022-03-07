@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
    
-import { PostModule } from './post/post.module';
 import { StudentModule } from './student/student.module';
    
 @NgModule({
@@ -15,7 +14,6 @@ import { StudentModule } from './student/student.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PostModule,
     StudentModule,
     HttpClientModule,
   ],
