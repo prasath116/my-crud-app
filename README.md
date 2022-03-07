@@ -35,12 +35,19 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   *npm install bootstrap --save*  To install bootstrap. After that, import this css file into angular crud app: @import "~bootstrap/dist/css/bootstrap.css" in *src/styles.css* file
 ## 2 – Create Module & Routing
   *ng generate module post --routing* will create files in the following locations:
-  *src/app/post/post.module.ts* & 
-  *src/app/post/post-routing.module.ts*
+  - *src/app/post/post.module.ts* & 
+  - *src/app/post/post-routing.module.ts*
 ## 3 – Create CRUD Component
   - **ng generate component student/index** 
   - **ng generate component student/view** 
   - **ng generate component student/create**
   - **ng generate component student/edit**
+    
     Execute these one by one to create componet for create,read,update & delete operations. You can see respective folders inside student path.
+## 4 – Create Interface 
+  **ng generate interface student/student** For model data.
+## 5 – Create Service 
+ **ng generate service student/student** From where we can amke API calls.
+## 6 – Start Angular App
+  **ng serve** after that hit *localhost:4200/student*
 
