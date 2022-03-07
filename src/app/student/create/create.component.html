@@ -1,0 +1,58 @@
+<div class="container">
+    <h1>Create New Student</h1>
+   
+    <a href="#" routerLink="/student/index" class="btn btn-primary">Back</a>
+         
+    <form [formGroup]="form" (ngSubmit)="submit()">
+   
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input
+                formControlName="name"
+                id="name"
+                type="text"
+                class="form-control">
+            <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
+                <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input
+                formControlName="age"
+                id="age"
+                type="number"
+                class="form-control">
+            <div *ngIf="f['age'].touched && f['age'].invalid" class="alert alert-danger">
+                <div *ngIf="f['age'].errors && f['age'].errors['required']">Age is required.</div>
+            </div>
+        </div>
+
+       <div class="form-group">
+            <label for="collegeId">College Id:</label>
+            <input
+                formControlName="collegeId"
+                id="collegeId"
+                type="number"
+                class="form-control">
+            <div *ngIf="f['collegeId'].touched && f['collegeId'].invalid" class="alert alert-danger">
+                <div *ngIf="f['collegeId'].errors && f['collegeId'].errors['required']">CollegeId is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="departmentId">DepartmentId:</label>
+            <input
+                formControlName="departmentId"
+                id="departmentId"
+                type="number"
+                class="form-control">
+            <div *ngIf="f['departmentId'].touched && f['departmentId'].invalid" class="alert alert-danger">
+                <div *ngIf="f['departmentId'].errors && f['departmentId'].errors['required']">DepartmentId is required.</div>
+            </div>
+        </div>
+       
+   
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>
