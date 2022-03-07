@@ -49,5 +49,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## 5 – Create Service 
  **ng generate service student/student** From where we can amke API calls.
 ## 6 – Start Angular App
-  **ng serve** after that hit [localhost](http://localhost:4200/student)
+  **ng serve** after that hit [localhost:4200](http://localhost:4200/student)
 
