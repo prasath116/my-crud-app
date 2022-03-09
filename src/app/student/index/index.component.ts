@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../student.service';
 import { Student } from '../student';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -11,7 +12,7 @@ export class IndexComponent implements OnInit {
 
   students: Student[] = [];
 
-  constructor(public service: StudentService) { }
+  constructor(public service: StudentService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.getAll().subscribe(data => {
@@ -25,6 +26,10 @@ export class IndexComponent implements OnInit {
       this.students = this.students.filter(e => e.id !== id);
       console.log("student deleted successfully");
     });
+  }
+
+  editStudent(id:number){
+    this.router.navigateByUrl('student/'+id+'/edit');
   }
 
 }
