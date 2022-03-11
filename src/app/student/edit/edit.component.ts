@@ -3,6 +3,8 @@ import { StudentService } from '../student.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from '../student';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { College } from 'src/app/college/college';
+import { CollegeService } from 'src/app/college/college.service';
       
 @Component({
   selector: 'app-edit',
@@ -13,6 +15,7 @@ export class EditComponent implements OnInit {
        
   id!: number;
   student!: Student;
+  colleges!: College[];
   form!: FormGroup;
      
   /*------------------------------------------
@@ -22,6 +25,7 @@ export class EditComponent implements OnInit {
   --------------------------------------------*/
   constructor(
     public studentService: StudentService,
+    public collegeService: CollegeService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -36,7 +40,9 @@ export class EditComponent implements OnInit {
     this.studentService.find(this.id).subscribe((data: Student)=>{
       this.student = data;
     }); 
-       
+    this.collegeService.getAll().subscribe((res: College[]) => {
+      this.colleges = res;
+    });   
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       age: new FormControl('', Validators.required),

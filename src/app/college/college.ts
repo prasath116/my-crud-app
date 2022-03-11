@@ -1,0 +1,5 @@
+export interface College {
+    id: number;
+	name: string;
+	address:string;
+}

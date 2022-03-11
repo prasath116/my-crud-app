@@ -4,15 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
    
-import { Student } from './student';
+import { College } from './college';
     
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
-    
+export class CollegeService {
+
   //private apiURL = "http://localhost:8065";
-  private apiURL = "http://localhost:8060/student";
+  private apiURL = "http://localhost:8060/college";
     
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,44 +21,37 @@ export class StudentService {
   }
    
   constructor(private httpClient: HttpClient) { }
-
-  stream(): Observable<any> {
-    return this.httpClient.get<any>(this.apiURL + '/stream-flux')
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }
-
-  getAll(): Observable<Student[]> {
-    return this.httpClient.get<Student[]>(this.apiURL + '/findAll')
+    
+  getAll(): Observable<College[]> {
+    return this.httpClient.get<College[]>(this.apiURL + '/findAll')
     .pipe(
       catchError(this.errorHandler)
     )
   }
     
-  create(student:Student): Observable<Student> {
-    return this.httpClient.post<Student>(this.apiURL + '/add', JSON.stringify(student), this.httpOptions)
+  create(college:College): Observable<College> {
+    return this.httpClient.post<College>(this.apiURL + '/add', JSON.stringify(college), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }  
     
-  find(id:number): Observable<Student> {
-    return this.httpClient.get<Student>(this.apiURL + '/get-by/' + id)
+  find(id:number): Observable<College> {
+    return this.httpClient.get<College>(this.apiURL + '/get-by/' + id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
     
-  update(id:number, student:Student): Observable<Student> {
-    return this.httpClient.put<Student>(this.apiURL + '/update/' + id, JSON.stringify(student), this.httpOptions)
+  update(id:number, college:College): Observable<College> {
+    return this.httpClient.put<College>(this.apiURL + '/update/' + id, JSON.stringify(college), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
     
   delete(id:number){
-    return this.httpClient.delete<Student>(this.apiURL + '/delete/' + id, this.httpOptions)
+    return this.httpClient.delete<College>(this.apiURL + '/delete/' + id, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

@@ -31,12 +31,18 @@
         </div>
         <div class="form-group">
             <label for="collegeId">College Id:</label>
-            <input
+            <!--input
                 formControlName="collegeId"
                 id="collegeId"
                 type="number"
                 [(ngModel)]="student.collegeId"
-                class="form-control">
+                class="form-control"-->
+            <select class="form-control" formControlName="collegeId" [(ngModel)]="student.collegeId">
+                <option value="">Choose College</option>
+                <option *ngFor="let coll of colleges" [ngValue]="coll.id">
+                  {{ coll.name }}
+                </option>
+            </select>
             <div *ngIf="f['collegeId'].touched && f['collegeId'].invalid" class="alert alert-danger">
                 <div *ngIf="f['collegeId'].errors && f['collegeId'].errors['required']">CollegeId is required.</div>
             </div>

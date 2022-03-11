@@ -19,6 +19,10 @@ export class IndexComponent implements OnInit {
       this.students = data;
       console.log(this.students);
     });
+
+    /*this.service.stream().subscribe(d=> {
+      console.log("dddd : "+d);
+    });*/
   }
 
   deleteStudent(id:number) {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../student.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { CollegeService } from 'src/app/college/college.service';
+import { College } from 'src/app/college/college';
       
 @Component({
   selector: 'app-create',
@@ -10,8 +12,11 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class CreateComponent implements OnInit {
   form!: FormGroup;
+  //collegeIds!: number[];
+  colleges!: College[];
   constructor(
     public service: StudentService,
+    public collegeService: CollegeService,
     private router: Router
   ) { }
 
@@ -21,6 +26,11 @@ export class CreateComponent implements OnInit {
       age: new FormControl('', Validators.required),
       collegeId: new FormControl('', Validators.required),
       departmentId: new FormControl('', Validators.required)
+    });
+    this.collegeService.getAll().subscribe((res: College[]) => {
+      this.colleges = res;
+      //this.collegeIds = res.map(c=>c.id);
+      //console.log(this.collegeIds);
     });
   
   }
