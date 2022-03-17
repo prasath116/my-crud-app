@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
    
 import { StudentModule } from './student/student.module';
+import { EmployeeModule } from './employee/employee.module';
+import { CollegeModule } from './college/college.module';
    
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { StudentModule } from './student/student.module';
     BrowserModule,
     AppRoutingModule,
     StudentModule,
+    CollegeModule,
+    EmployeeModule,
     HttpClientModule,
   ],
   providers: [],
