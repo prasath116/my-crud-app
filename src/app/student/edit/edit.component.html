@@ -31,17 +31,9 @@
         </div>
         <div class="form-group">
             <label for="collegeId">College Id:</label>
-            <!--input
-                formControlName="collegeId"
-                id="collegeId"
-                type="number"
-                [(ngModel)]="student.collegeId"
-                class="form-control"-->
             <select class="form-control" formControlName="collegeId" [(ngModel)]="student.collegeId">
                 <option value="">Choose College</option>
-                <option *ngFor="let coll of colleges" [ngValue]="coll.id">
-                  {{ coll.name }}
-                </option>
+                <option *ngFor="let coll of colleges" [ngValue]="coll.id">{{ coll.name }}</option>
             </select>
             <div *ngIf="f['collegeId'].touched && f['collegeId'].invalid" class="alert alert-danger">
                 <div *ngIf="f['collegeId'].errors && f['collegeId'].errors['required']">CollegeId is required.</div>
@@ -50,12 +42,10 @@
 
         <div class="form-group">
             <label for="departmentId">DepartmentId:</label>
-            <input
-                formControlName="departmentId"
-                id="departmentId"
-                type="number"
-                [(ngModel)]="student.departmentId"
-                class="form-control">
+            <select class="form-control" formControlName="departmentId" [(ngModel)]="student.departmentId">
+                <option value="">Choose Department</option>
+                <option *ngFor="let dept of departments" [ngValue]="dept.id">{{ dept.name }}</option>
+            </select>
             <div *ngIf="f['departmentId'].touched && f['departmentId'].invalid" class="alert alert-danger">
                 <div *ngIf="f['departmentId'].errors && f['departmentId'].errors['required']">DepartmentId is required.</div>
             </div>

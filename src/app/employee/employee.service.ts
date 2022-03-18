@@ -6,20 +6,15 @@ import { catchError } from 'rxjs/operators';
    
 import { Employee } from './employee';
 import { environment } from 'src/environments/environment';
+import { AbstractService } from '../abstract.service';
     
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class EmployeeService extends AbstractService{
   private apiURL = environment.employeeUrl;
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
-   
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { super();}
 
   getAll(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(this.apiURL + '/findAll')
@@ -56,14 +51,4 @@ export class EmployeeService {
     )
   }
      
-   
-  errorHandler(error:any) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(errorMessage);
- }
 }

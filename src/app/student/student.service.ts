@@ -6,20 +6,15 @@ import { catchError } from 'rxjs/operators';
    
 import { Student } from './student';
 import { environment } from 'src/environments/environment';
+import { AbstractService } from '../abstract.service';
     
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
+export class StudentService extends AbstractService {
     private apiURL = environment.studentUrl;
     
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
-   
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { super();}
 
   stream(): Observable<any> {
     return this.httpClient.get<any>(this.apiURL + '/stream-flux')
@@ -29,6 +24,7 @@ export class StudentService {
   }
 
   getAll(): Observable<Student[]> {
+    console.log("is prod : "+environment.production);
     return this.httpClient.get<Student[]>(this.apiURL + '/findAll')
     .pipe(
       catchError(this.errorHandler)
@@ -63,14 +59,4 @@ export class StudentService {
     )
   }
      
-   
-  errorHandler(error:any) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(errorMessage);
- }
 }

@@ -18,7 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    EmployeeRoutingModule
+    EmployeeRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class EmployeeModule { }

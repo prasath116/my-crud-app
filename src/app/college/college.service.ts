@@ -6,21 +6,17 @@ import { catchError } from 'rxjs/operators';
    
 import { College } from './college';
 import { environment } from 'src/environments/environment';
+import { AbstractService } from '../abstract.service';
     
 @Injectable({
   providedIn: 'root'
 })
-export class CollegeService {
-
+export class CollegeService extends AbstractService {
   private apiURL = environment.collegeUrl;
-    
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+  
+  constructor(private httpClient: HttpClient) { 
+    super();
   }
-   
-  constructor(private httpClient: HttpClient) { }
     
   getAll(): Observable<College[]> {
     return this.httpClient.get<College[]>(this.apiURL + '/findAll')
@@ -57,14 +53,4 @@ export class CollegeService {
     )
   }
      
-   
-  errorHandler(error:any) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(errorMessage);
- }
 }

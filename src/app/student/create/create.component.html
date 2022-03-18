@@ -46,11 +46,12 @@
 
         <div class="form-group">
             <label for="departmentId">DepartmentId:</label>
-            <input
-                formControlName="departmentId"
-                id="departmentId"
-                type="number"
-                class="form-control">
+           <select class="form-control" formControlName="departmentId">
+                <option value="">Choose Departmet</option>
+                <option *ngFor="let dept of departments" [ngValue]="dept.id">
+                  {{ dept.name }}
+                </option>
+            </select>
             <div *ngIf="f['departmentId'].touched && f['departmentId'].invalid" class="alert alert-danger">
                 <div *ngIf="f['departmentId'].errors && f['departmentId'].errors['required']">DepartmentId is required.</div>
             </div>

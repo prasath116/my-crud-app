@@ -5,6 +5,8 @@ import { Student } from '../student';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { College } from 'src/app/college/college';
 import { CollegeService } from 'src/app/college/college.service';
+import { DepartmentService } from 'src/app/department/department.service';
+import { Department } from 'src/app/department/department';
       
 @Component({
   selector: 'app-edit',
@@ -14,18 +16,15 @@ import { CollegeService } from 'src/app/college/college.service';
 export class EditComponent implements OnInit {
        
   id!: number;
+  form!: FormGroup;
   student!: Student;
   colleges!: College[];
-  form!: FormGroup;
+  departments!: Department[];
      
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
   constructor(
     public studentService: StudentService,
     public collegeService: CollegeService,
+    public departmentService: DepartmentService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -37,20 +36,15 @@ export class EditComponent implements OnInit {
    */
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.studentService.find(this.id).subscribe((data: Student)=>{
-      this.student = data;
-    }); 
-    this.collegeService.getAll().subscribe((res: College[]) => {
-      this.colleges = res;
-    });   
+    this.collegeService.getAll().subscribe(res => this.colleges = res);   
+    this.departmentService.getAll().subscribe(res => this.departments = res);
+    this.studentService.find(this.id).subscribe(data => this.student = data); 
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       age: new FormControl('', Validators.required),
       collegeId: new FormControl('', Validators.required),
       departmentId: new FormControl('', Validators.required)
     });
-  
-  
   }
      
   /**

@@ -1,1 +1,73 @@
-<p>create works!</p>
+<div class="container">
+    <h1>Create New Employee</h1>
+   
+    <a href="#" routerLink="/employee/index" class="btn btn-primary">Back</a>
+         
+    <form [formGroup]="form" (ngSubmit)="submit()">
+   
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input
+                formControlName="name"
+                id="name"
+                type="text"
+                class="form-control">
+            <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
+                <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name">Position :</label>
+            <input
+                formControlName="position"
+                id="position"
+                type="text"
+                class="form-control">
+            <div *ngIf="f['position'].touched && f['position'].invalid" class="alert alert-danger">
+                <div *ngIf="f['position'].errors && f['position'].errors['required']">Position is required.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input
+                formControlName="age"
+                id="age"
+                type="number"
+                class="form-control">
+            <div *ngIf="f['age'].touched && f['age'].invalid" class="alert alert-danger">
+                <div *ngIf="f['age'].errors && f['age'].errors['required']">Age is required.</div>
+            </div>
+        </div>
+       <div class="form-group">
+            <label for="collegeId">College Id:</label>
+           <select
+                class="form-control"
+                formControlName="collegeId"
+              >
+                <option value="">Choose College</option>
+                <option *ngFor="let coll of colleges" [ngValue]="coll.id">
+                  {{ coll.name }}
+                </option>
+              </select>
+            <div *ngIf="f['collegeId'].touched && f['collegeId'].invalid" class="alert alert-danger">
+                <div *ngIf="f['collegeId'].errors && f['collegeId'].errors['required']">CollegeId is required.</div>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label for="departmentId">DepartmentId:</label>
+           <select class="form-control" formControlName="departmentId">
+                <option value="">Choose Departmet</option>
+                <option *ngFor="let dept of departments" [ngValue]="dept.id">
+                  {{ dept.name }}
+                </option>
+            </select>
+            <div *ngIf="f['departmentId'].touched && f['departmentId'].invalid" class="alert alert-danger">
+                <div *ngIf="f['departmentId'].errors && f['departmentId'].errors['required']">DepartmentId is required.</div>
+            </div>
+        </div>
+       
+   
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>

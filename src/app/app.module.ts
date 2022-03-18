@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { StudentModule } from './student/student.module';
 import { EmployeeModule } from './employee/employee.module';
 import { CollegeModule } from './college/college.module';
+import { DepartmentModule } from './department/department.module';
    
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CollegeModule } from './college/college.module';
     StudentModule,
     CollegeModule,
     EmployeeModule,
+    DepartmentModule,
     HttpClientModule,
   ],
   providers: [],
