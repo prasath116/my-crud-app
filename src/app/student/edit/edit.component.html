@@ -1,7 +1,7 @@
 <div class="container">
     <h1>Update Student</h1>
     
-    <a href="#" routerLink="/student/index" class="btn btn-primary">Back</a>
+    <a href="#" routerLink="/student/index" class="btn btn-primary" id="back-button">Back</a>
            
     <form [formGroup]="form" (ngSubmit)="submit()">
      
@@ -51,6 +51,6 @@
             </div>
         </div>
           
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+        <button class="btn btn-primary" id="submit-btn" type="submit" [disabled]="!form.valid">Update</button>
     </form>
 </div>
