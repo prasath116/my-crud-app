@@ -1,7 +1,10 @@
+import { College } from "../college/college";
+import { Department } from "../department/department";
+
 export interface Student {
     id: number;
-	collegeId: number;
-	departmentId: number;
+	college: College;
+	department: Department;
 	name: string;
 	age:number;
 }

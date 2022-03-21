@@ -31,8 +31,8 @@
         </div>
         <div class="form-group">
             <label for="collegeId">College Id:</label>
-            <select class="form-control" formControlName="collegeId" [(ngModel)]="student.collegeId">
-                <option value="">Choose College</option>
+            <select class="form-control" formControlName="collegeId" [(ngModel)]="student.college.id" (ngModelChange)="changeCollege(student.college.id)">
+                <option value="0">Choose College</option>
                 <option *ngFor="let coll of colleges" [ngValue]="coll.id">{{ coll.name }}</option>
             </select>
             <div *ngIf="f['collegeId'].touched && f['collegeId'].invalid" class="alert alert-danger">
@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <label for="departmentId">DepartmentId:</label>
-            <select class="form-control" formControlName="departmentId" [(ngModel)]="student.departmentId">
+            <select class="form-control" formControlName="departmentId" [(ngModel)]="student.department.id">
                 <option value="">Choose Department</option>
                 <option *ngFor="let dept of departments" [ngValue]="dept.id">{{ dept.name }}</option>
             </select>

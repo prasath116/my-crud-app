@@ -37,7 +37,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.collegeService.getAll().subscribe(res => this.colleges = res);   
-    this.departmentService.getAll().subscribe(res => this.departments = res);
+    //this.departmentService.getAll().subscribe(res => this.departments = res);
     this.studentService.find(this.id).subscribe(data => this.student = data); 
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -55,7 +55,15 @@ export class EditComponent implements OnInit {
   get f(){
     return this.form.controls;
   }
-     
+  changeCollege(collegeId:number) {
+    console.log("event val : " +collegeId);
+    this.departments = [];
+    if(collegeId !== undefined && collegeId > 0) {
+      let id = Number(collegeId);
+      console.log("collegeId : " +collegeId);
+      this.departmentService.findByCollege(collegeId).subscribe(res => this.departments = res);
+    }
+  }
   /**
    * Write code on Method
    *

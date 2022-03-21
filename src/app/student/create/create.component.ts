@@ -36,14 +36,22 @@ export class CreateComponent implements OnInit {
       //console.log(this.collegeIds);
     });
 
-    this.departmentService.getAll().subscribe(res => this.departments = res);
+    //this.departmentService.getAll().subscribe(res => this.departments = res);
   
   }
 
   get f(){
     return this.form.controls;
   }
-
+  changeCollege(collegeId:string) {
+    this.departments = [];
+    if(collegeId !== undefined && collegeId.length > 0) {
+      let id = collegeId.split(":")[1];
+      console.log("collegeId : " +Number(id));
+      this.departmentService.findByCollege(Number(id)).subscribe(res => this.departments = res);
+    }
+  }
+  
   submit(){
     console.log(this.form.value);
     this.service.create(this.form.value).subscribe((res:any) => {

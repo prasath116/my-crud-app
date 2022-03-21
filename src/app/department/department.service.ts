@@ -37,6 +37,13 @@ export class DepartmentService extends AbstractService{
       catchError(this.errorHandler)
     )
   }
+  
+  findByCollege(collegeId:number): Observable<Department[]> {
+    return this.httpClient.get<Department[]>(this.apiURL + '/college/' + collegeId)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
     
   update(id:number, department:Department): Observable<Department> {
     return this.httpClient.put<Department>(this.apiURL + '/update/' + id, JSON.stringify(department), this.httpOptions)
